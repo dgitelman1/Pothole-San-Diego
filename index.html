@@ -8,20 +8,18 @@
     <title>Map of San Diego's Potholes</title>
     
     <style>
-        .arc {
-           transition: opacity 0.3s ease-in-out, stroke-opacity 0.3s ease-in-out;
-       }
 
-       #tooltip {
-           position: absolute;
-           background-color: #9DB2BF;
-           padding: 8px;
-           border: 1px solid #ccc;
-           border-radius: 5px;
-           font-size: 12px;
-           pointer-events: none;
-           opacity: 0;
-       }
+        #tooltip {
+            position: absolute;
+            background-color: #9DB2BF;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+        }
+
    </style>
     <script src="https://d3js.org/d3.v6.min.js"> const tooltip = d3.select('#tooltip'); </script>
     
@@ -30,14 +28,19 @@
     <script src="script.js"></script>
     
     <div id="tooltip" class="tooltip"></div>
-    
-    <h2 style="font-family:'League Spartan';font-size:22px;padding:30px">Map of San Diego Potholes</h2>
-    <input type="text" placeholder="Search for a Zipcode.." id="search">
-    <button type="submit" onkeydown="search_zipcode()"><i class="fa fa-search"></i></button>
-    <svg id="map" width="800" height="500"></svg>
-    
-
-
+    <h2 style="font-family:'League Spartan';font-size:22px;padding:30px">Map of Reported San Diego Potholes</h2>
+    <div id="'searchstuff">
+        <input type="text" placeholder="Search for a Zipcode.." id="search">
+        <button type="submit" id="sbutton"><i class="fa fa-search"></i></button>
+        <button type="reset" id="rbutton">Reset the map!</button>
+    </div>
+    <div id="loading" style="display: flex; justify-content: center;" width="100%">
+        <img id="loading-image" src="https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" alt="Loading..." />
+    </div>
+    <div id="maps" style="display: flex; justify-content: center;" width="100%">
+        <svg id="map" width="800" height="600"></svg>
+        <svg id="map1" width="800" height="600" display="none"></svg>
+    </div>
 </body>
 </html>
 </main>
