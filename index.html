@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<main>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Map of San Diego's Potholes</title>
+    
+    <style>
+        .arc {
+           transition: opacity 0.3s ease-in-out, stroke-opacity 0.3s ease-in-out;
+       }
+
+       #tooltip {
+           position: absolute;
+           background-color: #9DB2BF;
+           padding: 8px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+           font-size: 12px;
+           pointer-events: none;
+           opacity: 0;
+       }
+   </style>
+    <script src="https://d3js.org/d3.v6.min.js"> const tooltip = d3.select('#tooltip'); </script>
+    
+</head>
+<body>
+    <script src="script.js"></script>
+    
+    <div id="tooltip" class="tooltip"></div>
+    
+    <h2 style="font-family:'League Spartan';font-size:22px;padding:30px">Map of San Diego Potholes</h2>
+    <input type="text" placeholder="Search for a Zipcode.." id="search">
+    <button type="submit" onkeydown="search_zipcode()"><i class="fa fa-search"></i></button>
+    <svg id="map" width="800" height="500"></svg>
+    
+
+
+</body>
+</html>
+</main>
