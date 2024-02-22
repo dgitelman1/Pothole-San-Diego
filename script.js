@@ -2,6 +2,7 @@ let gdata = [];
 let potholes = [];
 let pothole_count = [];
 let valid_zip = [];
+let total_holes = 0;
 
 let projection = d3.geoMercator();
 let path = d3.geoPath().projection(projection);
@@ -23,6 +24,7 @@ async function loadGeoData() {
         const response = d3.csv(url).then((data) => {
             potholes = data;
             pothole_count = d3.rollup(potholes, (v) => v.length, (d) => d.zipcode);
+            total_holes = data.length
             gdata.features = gdata.features.filter((d) => !to_remove.includes(d.properties.zip));
             valid_zip = gdata.features.map((d) => d.properties.zip);
             draw_map();
@@ -55,10 +57,10 @@ function draw_map() {
         const tooltip = d3.select('#tooltip');
         tooltip.transition()
         .duration(200)
-        .style('opacity', 0.9)
+        .style('opacity', 0.8)
         .style('position', 'absolute')
         .style('background-color', 'white')
-        .style('padding', '8px')
+        .style('padding', '6px')
         .style('border', '1px solid #ccc')
         .style('border-radius', '5px')
         .style('font-size', '12px');
@@ -94,6 +96,8 @@ function draw_map() {
       }
     );
     generate_potholes(.1, potholes, svg, 'black');
+
+    document.getElementById("count_tracker").innerText = total_holes + " Potholes";
   }
 
   function display_segment(z){
@@ -103,6 +107,8 @@ function draw_map() {
     svg.attr('display', "block")
     const width = svg.attr('width');
     const height = svg.attr('height');
+    document.getElementById("zip-container").innerText = z;
+    document.getElementById("count_tracker").innerText = z_count(z) + " Potholes";
     d3.select('#tooltip')
     .transition()
     .duration(500)
@@ -131,7 +137,6 @@ function draw_map() {
 // Displays new segment on click
 function clicked(event, d) {
     let z = d.properties.zip
-    document.getElementById("zip-container").innerText = d.properties.zip;
     display_segment(z);
 }
 
@@ -180,7 +185,7 @@ function zipEventResponse(){
     document.getElementById('sbutton').addEventListener('click', function() {
         let input = document.getElementById('search').value
         if (!valid_zip.includes(input)){
-            console.log(error)
+            console.log("error")
         }else{
             display_segment(input)
         }
@@ -260,5 +265,3 @@ function createLegend() {
         .text("High Pothole Density");
 
 }
-
-
