@@ -177,7 +177,7 @@ function generate_potholes(radius, pdata, svg, color) {
     svg.selectAll('circle')
     .data(pdata)
     .enter()
-    .append('circle');
+    .append('circle')
     .attr('cx', (d) => projection([d.lng, d.lat])[0])
     .attr('cy', (d) => projection([d.lng, d.lat])[1])
     .attr('r', radius)
