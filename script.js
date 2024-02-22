@@ -139,7 +139,7 @@ function clicked(event, d) {
 function revert(event, d) {
     const svg = d3.select('#map1');
     svg.attr('display', "none")
-    document.getElementById("zip-container").innerText = "Full Map;
+    document.getElementById("zip-container").innerText = "Full Map";
     draw_map();
 }
 
