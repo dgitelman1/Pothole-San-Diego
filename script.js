@@ -209,8 +209,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function createLegend() {
     console.log('check')
     const legendSVG = d3.select("#legend-container")
-        .append("svg");
-        .attr("class", "legend");
+        .append("svg")
+        .attr("class", "legend")
         .attr("width", 700)
         .attr("height", 40);
 
