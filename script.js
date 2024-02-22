@@ -76,7 +76,7 @@ function draw_map() {
     .on('mouseout', () => {
         d3.select('#tooltip')
         .transition()
-        .duration(500)
+        .duration(250)
         .style('opacity', 0);
     })
     .attr('d', path)
@@ -131,6 +131,7 @@ function draw_map() {
 // Displays new segment on click
 function clicked(event, d) {
     let z = d.properties.zip
+    document.getElementById("zip-container").innerText = d.properties.zip;
     display_segment(z);
 }
 
@@ -138,6 +139,7 @@ function clicked(event, d) {
 function revert(event, d) {
     const svg = d3.select('#map1');
     svg.attr('display', "none")
+    document.getElementById("zip-container").innerText = "Full Map;
     draw_map();
 }
 
