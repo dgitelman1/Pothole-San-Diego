@@ -33,21 +33,7 @@ async function loadGeoData() {
     }
 }
 
-async function loadData() {
-    try {
-        let url = 'https://raw.githubusercontent.com/dgitelman1/potholedata/main/get_it_done_pothole_requests_datasd.csv'
-        const response = d3.csv(url).then((data) => {
-            potholes = data;
-            pothole_count = d3.rollup(potholes, (v) => v.length, (d) => d.zipcode);
-        });
-        
-    } catch (error) {
-        console.error('Could not load data:', error);
-    }
-}
-
 async function full_load(){
-    await loadData();
     await loadGeoData();
     document.getElementById("loading-image").style.display="none";
 }
