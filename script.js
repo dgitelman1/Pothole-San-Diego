@@ -45,7 +45,6 @@ async function loadData() {
 async function full_load(){
     await loadData();
     await loadGeoData();
-    createLegend();
     document.getElementById("loading-image").style.display="none";
 }
 
@@ -178,7 +177,7 @@ function generate_potholes(radius, pdata, svg, color) {
     svg.selectAll('circle')
     .data(pdata)
     .enter()
-    .append('circle')
+    .append('circle');
     .attr('cx', (d) => projection([d.lng, d.lat])[0])
     .attr('cy', (d) => projection([d.lng, d.lat])[1])
     .attr('r', radius)
@@ -201,15 +200,16 @@ function zipEventResponse(){
 
 // Load data when the page loads
 window.addEventListener('DOMContentLoaded', (event) => {
-    full_load()
-    zipEventResponse()
+    full_load();
+    zipEventResponse();
+    createLegend();
     document.getElementById("maps").style.margin = "50px 10px 20px 30px";
 });
 
 function createLegend() {
     const legendSVG = d3.select("#legend-container")
-        .append("svg")
-        .attr("class", "legend")
+        .append("svg");
+        .attr("class", "legend");
         .attr("width", 700)
         .attr("height", 40);
 
