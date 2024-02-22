@@ -246,7 +246,7 @@ function createLegend() {
         .style("font-weight", "bold")
         .style("fill", "#00000")
         .style("font-family", "Gill Sans")
-        .text("Total Number of Potholes"); 
+        .text("Pothole Density"); 
 
     legendSVG.append("text")
         .attr("x", 0)
@@ -255,7 +255,7 @@ function createLegend() {
         .style("font-weight", "bold")
         .style("fill", "#00000")
         .style("font-family", "Gill Sans")
-        .text(d3.min(pothole_count.values())); 
+        .text("Low Pothole Density")); 
 
     legendSVG.append("text")
         .attr("x", 700)
@@ -265,7 +265,7 @@ function createLegend() {
         .style("font-weight", "bold")
         .style("fill", "#00000")
         .style("font-family", "Gill Sans")
-        .text(d3.max(pothole_count.values()));
+        .text("High Pothole Density);
 
 }
 
