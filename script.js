@@ -256,7 +256,7 @@ function createLegend() {
         .style("font-weight", "bold")
         .style("fill", "#00000")
         .style("font-family", "Gill Sans")
-        .text("Low Pothole Density")); 
+        .text("Low Pothole Density"); 
 
     legendSVG.append("text")
         .attr("x", 700)
