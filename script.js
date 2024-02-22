@@ -45,6 +45,7 @@ async function loadData() {
 async function full_load(){
     await loadData();
     await loadGeoData();
+    createLegend();
     document.getElementById("loading-image").style.display="none";
 }
 
@@ -104,8 +105,6 @@ function draw_map() {
       }
     );
     generate_potholes(.1, potholes, svg, 'black');
-
-    createLegend();
   }
 
   function display_segment(z){
