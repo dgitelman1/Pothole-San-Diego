@@ -103,6 +103,8 @@ function draw_map() {
   function display_segment(z){
     const svg1 = d3.select('#map');
     svg1.attr('display', "none")
+    const legendSVG = d3.select("#legend-container").selectAll('svg')
+    legendSVG.attr('display', 'none')
     const svg = d3.select('#map1');
     svg.attr('display', "block")
     const width = svg.attr('width');
@@ -144,6 +146,8 @@ function clicked(event, d) {
 function revert(event, d) {
     const svg = d3.select('#map1');
     svg.attr('display', "none")
+    const legendSVG = d3.select("#legend-container").selectAll('svg')
+    legendSVG.attr('display', 'block')
     document.getElementById("zip-container").innerText = "Full Map";
     draw_map();
 }
@@ -265,3 +269,5 @@ function createLegend() {
         .text("High Pothole Density");
 
 }
+
+
