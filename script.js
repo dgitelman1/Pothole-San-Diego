@@ -266,7 +266,7 @@ function createLegend() {
         .style("font-weight", "bold")
         .style("fill", "#00000")
         .style("font-family", "Gill Sans")
-        .text("High Pothole Density);
+        .text("High Pothole Density");
 
 }
 
