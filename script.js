@@ -18,7 +18,14 @@ async function loadGeoData() {
             throw new Error(`HTTP error! status: ${response_g.status}`);
         }
         const data = await response_g.json();
-        gdata = data;
+        let url = 'https://raw.githubusercontent.com/dgitelman1/potholedata/main/get_it_done_pothole_requests_datasd.csv'
+        const response = d3.csv(url).then((data) => {
+            potholes = data;
+            pothole_count = d3.rollup(potholes, (v) => v.length, (d) => d.zipcode);
+            gdata.features = gdata.features.filter((d) => !to_remove.includes(d.properties.zip));
+            valid_zip = gdata.features.map((d) => d.properties.zip);
+            draw_map();
+        });
         
     } catch (error) {
         console.error('Could not load data:', error);
@@ -199,9 +206,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     full_load();
     zipEventResponse();
     createLegend();
-    gdata.features = gdata.features.filter((d) => !to_remove.includes(d.properties.zip));
-    valid_zip = gdata.features.map((d) => d.properties.zip);
-    draw_map();
     document.getElementById("maps").style.margin = "50px 10px 20px 30px";
 });
 
