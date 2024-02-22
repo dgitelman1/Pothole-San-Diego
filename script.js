@@ -104,6 +104,8 @@ function draw_map() {
       }
     );
     generate_potholes(.1, potholes, svg, 'black');
+
+    createLegend();
   }
 
   function display_segment(z){
@@ -204,3 +206,68 @@ window.addEventListener('DOMContentLoaded', (event) => {
     zipEventResponse()
     document.getElementById("maps").style.margin = "50px 10px 20px 30px";
 });
+
+function createLegend() {
+    const legendSVG = d3.select("#legend-container")
+        .append("svg")
+        .attr("class", "legend")
+        .attr("width", 700)
+        .attr("height", 40);
+
+    const legendRectSize = 20;
+
+    let dens_extent = density();
+
+    const legendScale = d3.scaleLinear()
+        .domain([dens_extent[0], dens_extent[1]])
+        .range(['grey', 'red']);
+
+    const gradient = legendSVG.append("linearGradient")
+        .attr("id", "legendGradient")
+        .attr("x1", "0%")
+        .attr("x2", "100%");
+
+    gradient.selectAll("stop")
+        .data(legendScale.range())
+        .enter().append("stop")
+        .attr("offset", (d, i) => i * 100 + "%")
+        .attr("stop-color", d => d);
+
+    legendSVG.append("rect")
+        .attr("width", 700)
+        .attr("height", legendRectSize)
+        .style("fill", "url(#legendGradient)");
+
+
+    legendSVG.append("text")
+        .attr("x", 350) 
+        .attr("y", 30)  
+        .style("text-anchor", "middle")
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
+        .style("fill", "#00000")
+        .style("font-family", "Gill Sans")
+        .text("Total Number of Potholes"); 
+
+    legendSVG.append("text")
+        .attr("x", 0)
+        .attr("y", 30)
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
+        .style("fill", "#00000")
+        .style("font-family", "Gill Sans")
+        .text(d3.min(pothole_count.values())); 
+
+    legendSVG.append("text")
+        .attr("x", 700)
+        .attr("y", 30)
+        .style("font-size", "12px")
+        .style("text-anchor", "end")
+        .style("font-weight", "bold")
+        .style("fill", "#00000")
+        .style("font-family", "Gill Sans")
+        .text(d3.max(pothole_count.values()));
+
+}
+
+
