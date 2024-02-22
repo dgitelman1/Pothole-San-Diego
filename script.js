@@ -18,6 +18,7 @@ async function loadGeoData() {
             throw new Error(`HTTP error! status: ${response_g.status}`);
         }
         const data = await response_g.json();
+        gdata = data
         let url = 'https://raw.githubusercontent.com/dgitelman1/potholedata/main/get_it_done_pothole_requests_datasd.csv'
         const response = d3.csv(url).then((data) => {
             potholes = data;
