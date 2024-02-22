@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Map of San Diego's Potholes</title>
+    <title>San Diego Potholes</title>
     
     <style>
 
@@ -20,6 +20,61 @@
             opacity: 0;
         }
 
+        h2 {
+        color: #333;
+        text-align: center;
+        margin-top: 20px;
+        }
+
+        #search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f11d1d;
+            border-radius: 8px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+        }
+
+        #search {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        #sbutton, #rbutton {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        #map-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fefdfd;
+            border-radius: 8px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+        }
+
+        #loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 200%;
+            transform: translate(175%);
+        }
+
+        #maps {
+            display: absolute;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+
    </style>
     <script src="https://d3js.org/d3.v6.min.js"> const tooltip = d3.select('#tooltip'); </script>
     
@@ -28,18 +83,36 @@
     <script src="script.js"></script>
     
     <div id="tooltip" class="tooltip"></div>
-    <h2 style="font-family:'League Spartan';font-size:22px;padding:30px">Map of Reported San Diego Potholes</h2>
-    <div id="'searchstuff">
-        <input type="text" placeholder="Search for a Zipcode.." id="search">
-        <button type="submit" id="sbutton"><i class="fa fa-search"></i></button>
-        <button type="reset" id="rbutton">Reset the map!</button>
+    <h2 style="font-family:'impact';font-size:40px;padding:10px">Who Has the Most Potholes in San Diego?</h2>
+
+    <h5 style="font-family:'Gill Sans';font-size: 15px;padding:5px;text-align: center;">We wanted to answer the question of which zip codes in San Diego send out the most pothole repair requests? Using data (<a href="https://data.sandiego.gov/datasets/gid-pothole/">https://data.sandiego.gov/datasets/gid-pothole/</a>) 
+        collected from the city of San Diego regarding pothole repair requests, we made an interactive chloropleth map of San Diego that visualizes the number of potholes and their locations in the various zip codes of San Diego. <br></br>
+        </h5>
+
+    <h5 style="font-family:'Gill Sans';padding:2px;"">
+        How to use the map:
+        <ul>
+            <li>Hover over a region to see the number of potholes in that specific region.</li>
+            <li>Enter a zip code into the search bar and see all pothole locations in that region.</li>
+            <li>To exit the zoomed in region, click on the "Reset the map!" button.</li>
+          </ul></h5>
+
+    <div id="search-container">
+        <div id="'searchstuff">
+            <input type="text" placeholder="Search for a Zipcode.." id="search">
+            <button type="submit" id="sbutton"><i class="fa fa-search"></i></button>
+            <button type="reset" id="rbutton">Reset the map!</button>
+        </div>
     </div>
-    <div id="loading" style="display: flex; justify-content: center;" width="100%">
-        <img id="loading-image" src="https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" alt="Loading..." />
-    </div>
-    <div id="maps" style="display: flex; justify-content: center;" width="100%">
-        <svg id="map" width="800" height="600"></svg>
-        <svg id="map1" width="800" height="600" display="none"></svg>
+    
+    <div id="map-container">
+        <div id="loading" style="display: flex; justify-content: center;" width="100%">
+            <img id="loading-image" src="https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" alt="Loading..." />
+        </div>
+        <div id="maps" style="display: flex; justify-content: center;" width="100%">
+            <svg id="map" width="800" height="600"></svg>
+            <svg id="map1" width="800" height="600" display="none"></svg>
+        </div>
     </div>
 </body>
 </html>
