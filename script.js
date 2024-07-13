@@ -13,7 +13,7 @@ const to_remove = ['91901', '91905', '91906', '92028', '92036', '92058', '92058'
 // Function to load JSON data
 async function loadGeoData() {
     try {
-        let url_g = 'https://data.sandiegocounty.gov/api/geospatial/vsuf-uefy?method=export&format=GeoJSON'
+        let url_g = 'https://data.sandiegocounty.gov/resource/dg7q-pn9q.geojson'
         const response_g = await fetch(url_g); 
         if (!response_g.ok) {
             throw new Error(`HTTP error! status: ${response_g.status}`);
